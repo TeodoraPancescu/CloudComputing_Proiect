@@ -1,28 +1,28 @@
-import { ObjectId } from "mongodb";
-import { sendMethodNotAllowed, sendOk } from "@/utils/apiMethods";
-import { getCollection } from "@/utils/functions";
-
+import {sendMethodNotAllowed, sendOk,} from '@/utils/apiMethods.js';
+import {getCollection} from "@/utils/functions";
+import {ObjectId,} from 'mongodb';
 const COLLECTION_NAME = 'records';
-const id = data._id;
 
 const getRecords = async () => {
-    const collection = await getCollection(COLLECTION_NAME);
-    return await collection.find({}).toArray();
+	const collection = await getCollection(COLLECTION_NAME);
+	return collection.find({}).toArray();
 }
 
-const getRecord = async(id) => {
+const getRecord = async (id) => {
     const collection = await getCollection(COLLECTION_NAME);
-    return await collection.findOne({_id:ObjectId.createFromHexString(id)});
+    return collection.findOne({_id: ObjectId.createFromHexString(id)});
 }
 
-const createRecord = async(data) => {
-    const collection = await getCollection(COLLECTION_NAME);
-    return await collection.insertOne(data);
+const postRecord = async (record) => {
+	const collection = await getCollection(COLLECTION_NAME);
+	return collection.insertOne(record);
 }
 
-const updateRecord = async(id, data) => {
-    const collection = await getCollection(COLLECTION_NAME);
-    return await collection.updateOne({_id: new ObjectId(id)},{ $set: data});
+const putRecord = async (record) => {
+	const collection = await getCollection(COLLECTION_NAME);
+	const id = record._id;
+	delete record._id;
+	return collection.updateOne({_id: new ObjectId(id)}, {$set: record});
 }
 
 const deleteRecord = async (id) => {
@@ -31,35 +31,34 @@ const deleteRecord = async (id) => {
 }
 
 export default async function handler(req, res) {
-    const isAllowedMethod = req.method === "GET" || req.method === "POST" || req.method === "PUT" || req.method === "DELETE";
 
-    if(!isAllowedMethod){
-        return sendMethodNotAllowed(res,'Method Not Allowed');
-    }
+	const isAllowedMethod = req.method === 'GET' || req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE';
+	if(!isAllowedMethod) {
+		return sendMethodNotAllowed(res);
+	}
 
-    if(req.method === 'GET' && req.query.id){
-        const record = await getRecord(req.query.id);
-        return sendOk(res, record);
-    }
-
-    if(req.method === 'GET'){
-        const records = await getRecords();
-        return sendOk(res, records);
-    }
-
-    if(req.method === 'POST'){
-        const records = await createRecord(req.body);
-        return sendOk(res, records);
-    }
-
-    if(req.method === 'PUT'){
-        const records = await updateRecord(req.query.id, req.body);
-        return sendOk(res, records);
-    }
-
-    if(req.method === 'DELETE') {
+	if(req.method === 'GET' && req.query.id) {
+		const id = req.query.id;
+		const record = await getRecord(id);
+		return sendOk(res, record);
+	}
+	else if(req.method === 'GET') {
+		const records = await getRecords();
+		return sendOk(res, records);
+	}
+	else if(req.method === 'POST') {
+		const record = req.body;
+		const result = await postRecord(record);
+		return sendOk(res, result);
+	}
+	else if(req.method === 'PUT') {
+		const record = req.body;
+		const result = await putRecord(record);
+		return sendOk(res, result);
+	}
+	else if(req.method === 'DELETE') {
 		const id = req.query.id;
 		const result = await deleteRecord(id);
 		return sendOk(res, result);
 	}
- }
+}
