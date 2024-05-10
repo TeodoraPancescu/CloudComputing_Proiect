@@ -1,6 +1,6 @@
 Proiect Cloud Computing - Aplicație pentru gestionarea unei biblioteci folosind servicii de Cloud
 Studentă: Păncescu Teodora
-Grupa: 1032
+Grupa: 1132
 
 1. Introducere
 
@@ -128,7 +128,7 @@ Referințe:
 2. https://www.mongodb.com/docs/compass/current/
 3. Amit Phaltankar, Juned Ahsan, Michael Harrison, Liviu Nedov: "MongoDB Fundamentals: A hands-on guide to using MongoDB and Atlas in the real world"
 4. https://www.getfishtank.com/blog/what-is-vercel
-5. https://intuji.com what-is-vercel-is-it-the-right-platform-for-front-end-developers/
+5. https://intuji.com/what-is-vercel-is-it-the-right-platform-for-front-end-developers/
 6. https://medium.com/@asiandigitalhub/what-is-next-js-and-its-benefits-8b13aab56bfd
 
 
