@@ -63,7 +63,7 @@ const RecordForm = (props) => {
                     <textarea
                         id="descriere"
                         rows="4"
-                        value={data.description}
+                        value={data.descriere}
                         onChange={(e) => handleChange("descriere", e.target.value)}
                         className="bg-gray-50 border border-gray-300 text-purple-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-purple-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Adăugați descrierea cărții aici"
