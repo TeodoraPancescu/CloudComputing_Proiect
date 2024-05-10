@@ -53,7 +53,7 @@ const MainPage = () => {
                 >
                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-pink-500 dark:text-purple">{record.denumire}</h5>
                     <p className="mb-3 font-bold text-gray-700 dark:text-gray-400">de {record.autor}</p>
-                    <p2 className="mb-3 font-normal text-purple-500 dark:text-purple-400">{record.descriere}</p2>
+                    <p className="mb-3 font-normal text-purple-500 dark:text-purple-400">{record.descriere}</p>
                     <br></br>
                     <br></br>
                     <button
