@@ -123,6 +123,10 @@ Utilizare: Atunci când utilizatorul folosește o metodă HTTP (GET, POST, PUT, 
 ![alt text](imagine2.png)
 ![alt text](imagine3.png)
 
+Link prezentare:https://www.youtube.com/watch?v=L-WMaBYBEng
+Link publicare: https://cloud-computing-proiect-roan.vercel.app/
+Link git: https://github.com/TeodoraPancescu/CloudComputing_Proiect/tree/main
+
 Referințe:
 1. https://mongodb.com/docs/atlas/
 2. https://www.mongodb.com/docs/compass/current/
